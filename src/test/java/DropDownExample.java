@@ -26,7 +26,7 @@ public class DropDownExample {
         WebElement dropDown = driver.findElement(By.xpath("//select[@class='ui-selectonemenu']"));
         Select select = new Select(dropDown);
         select.selectByIndex(1);
-        select.selectByVisibleText("Playwrite");
+        select.selectByVisibleText("Playwright");
 
         //1.2) Get the number of dropdown option
         List<WebElement> listofOptions = select.getOptions();
@@ -38,12 +38,23 @@ public class DropDownExample {
         }
 
         //1.3) Using sendkeys select dropdown value
-
+        dropDown.sendKeys("Puppeteer");
 
         //1.4) Selecting value in a boostrap dropdown
+        WebElement dropdown2 = driver.findElement(By.xpath("//div[@id='j_idt87:country']"));
+        dropdown2.click();
+        List<WebElement> listofdropdown2values = driver.findElements(By.xpath("//ul[@id='j_idt87:country_items']//li"));
+        for(WebElement element:listofdropdown2values){
+            String dropDownvalue = element.getText();
+            if(dropDownvalue.equals("USA")){
+                element.click();
+                break;
+            }
+        }
     }
 
-
     //2) Google search - pick a value from suggestion
+
+
     //3) Handle Hidden Auto Suggestion DropDown and Search using DOM Debugger Track
 }
