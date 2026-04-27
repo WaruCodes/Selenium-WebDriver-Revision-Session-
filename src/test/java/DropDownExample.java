@@ -17,12 +17,12 @@ public class DropDownExample {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         //driver.get("https://www.leafground.com/");
-        driver.get("https://www.leafground.com/select.xhtml");
     }
 
     @Test
     public void leafgroundpageDropDownTest(){
         //1.1) Ways of select values in basic dropdown
+        driver.get("https://www.leafground.com/select.xhtml");
         WebElement dropDown = driver.findElement(By.xpath("//select[@class='ui-selectonemenu']"));
         Select select = new Select(dropDown);
         select.selectByIndex(1);
@@ -54,7 +54,19 @@ public class DropDownExample {
     }
 
     //2) Google search - pick a value from suggestion
+    @Test
+    public void googleSearchDropDown() throws InterruptedException {
+        driver.get("https://www.google.com/");
+        driver.findElement(By.name("q")).sendKeys("palitha");
+        Thread.sleep(2000);
+        List<WebElement> googlesearchList = driver.findElements(By.xpath("//ul[@role = 'listbox']//li//div[@class =  'wM6W7d']"));
+        System.out.println(googlesearchList.size());
+        for(WebElement element:googlesearchList){
+            System.out.println(element.getText());
+        }
 
+    }
 
-    //3) Handle Hidden Auto Suggestion DropDown and Search using DOM Debugger Track
+    //3) Handle Hidden Auto Suggestion DropDown and Search using DOM Debugger Trick
+
 }
