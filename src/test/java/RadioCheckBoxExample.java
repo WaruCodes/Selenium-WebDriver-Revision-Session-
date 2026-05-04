@@ -1,8 +1,11 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class RadioCheckBoxExample {
     WebDriver driver;
@@ -41,6 +44,21 @@ public class RadioCheckBoxExample {
         }
 
         //standard way
+        List<WebElement> radioElements = driver.findElements(By.xpath("//table[@id='j_idt87:console2']//td//input"));
+        int radioCount = radioElements.size();
+        System.out.println("Radio size : " + radioCount);
+
+        int index = -1;
+
+        for (WebElement radioElement: radioElements){
+            index++;
+            if (radioElement.isSelected()){
+                WebElement defaultSelectedRadioButton = driver.findElement(By.xpath("//label[@for='j_idt87:console2:" + index + "']"));
+                String defaultSelectedRadioButtonText = defaultSelectedRadioButton.getText();
+                System.out.println("Default selected radio button text : " + defaultSelectedRadioButtonText);
+                break;
+            }
+        }
 
         //02) Select the age group (only if not selected)
     }
