@@ -2,9 +2,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -94,6 +97,22 @@ public class windowsExample {
             driver.close();
 
             driver.quit(); Close all browser windows */
+
+            //04) Wait for 2 new tabs to open
+            WebElement waitforWindows = driver.findElement(By.xpath("//*[@id='j_idt88:j_idt95']/span"));
+            waitforWindows.click();
+            WebDriverWait webdriverWait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            webdriverWait.until(ExpectedConditions.numberOfWindowsToBe(3));
+
+            int howmanyWindows123 = driver.getWindowHandles().size();
+            if (howmanyWindows123==3){
+                System.out.println("Able to see 3 windows");
+            }else{
+                System.out.println("Can't able to see 3 windows");
+            }
+
+            driver.quit();
+
         }
     }
 }
