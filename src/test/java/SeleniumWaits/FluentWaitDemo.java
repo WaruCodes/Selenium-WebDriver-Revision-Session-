@@ -27,7 +27,7 @@ public class FluentWaitDemo {
     }
 
     @Test
-    public void implicitWaitTests(){
+    public void fluentWaitTests(){
         //define Fluent wait with WebDriver instance and maximum timeout
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(30)) //Maximum wait time
